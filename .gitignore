@@ -1,0 +1,13 @@
+.vs
+VsoundsRuntime/Dependencies
+VsoundsRuntime/Debug
+VsoundsRuntime/Release
+VsoundsRuntime/VsoundsRuntime/Release
+VsoundsRuntime/VsoundsRuntime/Debug
+Audiere.dll
+*.ilk
+*.pdb
+*.iobj
+*.log
+*tlog
+
