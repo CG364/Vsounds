@@ -1,4 +1,4 @@
 # Vsounds
 Soundboard for Microsoft Windows
 
-##As WIP as it can be
+## As WIP as it can be
