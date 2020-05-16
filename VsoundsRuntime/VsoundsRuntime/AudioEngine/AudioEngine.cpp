@@ -1,7 +1,21 @@
 #include "AudioEngine.h"
-AudioEngine::AudioEngine(std::string sDevice = "")
+//The audio engine class manages audio playback on a audio output device.
+//the audiere library is temporarily used, but this will later be done with the Windows Media Foundation(i just want it to work first).
+AudioEngine::AudioEngine(std::string sDeviceName = "")
 {
-	currentDevice = audiere::OpenDevice(0, 0);
+	if (sDeviceName == "")
+	{
+		currentDevice = audiere::OpenDevice(0, 0);
+		
+	}
+	else
+	{
+		currentDevice = audiere::OpenDevice(sDeviceName.c_str(), 0);
+	}
+	if (!currentDevice)
+	{
+		throw new LoggedException("Audiere::OpenDevice() returned nullptr");
+	}
 	GarbageCollectorThread = std::thread(&AudioEngine::GarbageCollectorWork, this);
 	engineList.push_back(this);
 }
@@ -26,11 +40,12 @@ void AudioEngine::stopAll()
 	PlayingFileList.clear();
 }
 
-void AudioEngine::EnumerateDevices()
+void AudioEngine::EnumerateDevices()//reserved for later use
 {
 
 }
 
+//this thread removes items that are finished playing from the live file list
 void AudioEngine::GarbageCollectorWork()
 {
 	Logger::Log("Starting garbage collector thread");

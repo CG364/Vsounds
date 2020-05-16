@@ -9,7 +9,7 @@ void KeyboardInputProvider::Init()
 	
 }
 
-void KeyboardInputProvider::Bind(std::vector<SoundConfigItem> itemList)
+void KeyboardInputProvider::Bind(std::vector<SoundConfigItem> itemList) //start the windows message loop with the specified hotkeys
 {
 	this->itemList = itemList;
 	
@@ -26,8 +26,10 @@ KeyboardInputProvider::~KeyboardInputProvider()
 
 }
 
+//code to communicate with windows
 void KeyboardInputProvider::messageThread_w()
 {
+	//first register the hotkeys
 	for (size_t i = 0; i < itemList.size(); i++)
 	{
 		bool res = RegisterHotKey(0, i, itemList[i].inputActivationMod, itemList[i].inputActivation);
@@ -43,7 +45,7 @@ void KeyboardInputProvider::messageThread_w()
 		std::wstring errmsg(buf);
 		throw new LoggedException("Unable to register the key combination ALT+ESC. Please ensure the key isn't being used by another application. Error code " + std::to_string(err) + ": " + std::string(errmsg.begin(), errmsg.end()));
 	}
-
+	//And now wait
 	MSG incoming{};
 	while (GetMessage(&incoming, 0, 0, 0))
 	{
@@ -51,7 +53,7 @@ void KeyboardInputProvider::messageThread_w()
 		{
 		case WM_HOTKEY:
 		{
-			int key = (incoming.lParam & 0x01FF0000) >> 16;
+			int key = (incoming.lParam & 0x01FF0000) >> 16; //stole this code from my older c# app, will replace this with wParam and then find the ID instead of the key
 			if (key == 27) //escape key
 			{
 				Logger::Log("ESC pressed, stopping all sounds.");

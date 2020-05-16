@@ -1,5 +1,7 @@
 #include "Configuration.h"
 
+//A static function that reads the configuration file, parses the contents and returns a vector of configured sounds.
+//It also caches the vector so it doesnt have to read the file all the time.
 std::vector<SoundConfigItem> Configuration::GetSoundConfigurationVector(bool refreshCache)
 {
 	if(cacheIsFilled && !refreshCache)
@@ -35,6 +37,7 @@ std::vector<SoundConfigItem> Configuration::GetSoundConfigurationVector(bool ref
 	
 }
 
+//this function will filter the sound config vector to only contain the input type that is relevant.
 std::vector<SoundConfigItem> Configuration::FilterSoundConfigurationVector(std::vector<SoundConfigItem> originalVec, int inputType)
 {
 	std::vector<SoundConfigItem> filtered;
@@ -48,16 +51,19 @@ std::vector<SoundConfigItem> Configuration::FilterSoundConfigurationVector(std::
 	return filtered;
 }
 
+//gets a string value from a given application rule
 std::string Configuration::getApplicationConfigRuleS(std::string rule)
 {
 	return std::string();
 }
 
+//gets a boolean value from a given application rule
 bool Configuration::getApplicationConfigRulesB(std::string rule)
 {
 	return false;
 }
 
+//gets a int value from a given application rule
 int Configuration::getApplicationConfigRulesI(std::string rule)
 {
 	return 0;
