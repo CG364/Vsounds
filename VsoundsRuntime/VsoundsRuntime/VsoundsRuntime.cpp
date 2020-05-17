@@ -27,6 +27,7 @@ int main()
     }
     __except (filterException(GetExceptionCode(), GetExceptionInformation()))
     {
+        
         terminate();
     }
 }
