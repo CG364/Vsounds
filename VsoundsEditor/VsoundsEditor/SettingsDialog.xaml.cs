@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace VsoundsEditor
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SettingsDialog.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SettingsDialog : Window
     {
-        public MainWindow()
+        public SettingsDialog()
         {
             InitializeComponent();
-        }
-
-        private void addItemButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddItemSlides.AddItemMainWindow window = new AddItemSlides.AddItemMainWindow();
-            window.Owner = this;
-            window.ShowDialog();
         }
     }
 }

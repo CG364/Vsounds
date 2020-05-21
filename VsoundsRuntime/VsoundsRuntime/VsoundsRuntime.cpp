@@ -8,17 +8,22 @@
 //nlohmann:json https://github.com/nlohmann/json
 //Audiere(tmp): http://audiere.sourceforge.net/
 
-
-static int filterException(int code, PEXCEPTION_POINTERS ex) {
-    std::cout << "Uncaught structured exception: " << std::hex << code;
-    terminate();
+LPEXCEPTION_POINTERS exceptionInfo;
+static int filterException(int code, LPEXCEPTION_POINTERS ex) {
+    exceptionInfo = ex;
     return EXCEPTION_EXECUTE_HANDLER;
 }
 
 void mainCaught();
 
+void echoException()
+{
+    Logger::Log("Uncaught fatal exception:\n", __FUNCTION__, 3);
+}
+
 int main()
 {
+   
     __try 
     {
 
@@ -27,18 +32,21 @@ int main()
     }
     __except (filterException(GetExceptionCode(), GetExceptionInformation()))
     {
-        
+        PEXCEPTION_RECORD excRec = exceptionInfo->ExceptionRecord;
+        echoException();
+        std::cout << "\nException code: " << excRec->ExceptionCode << " at " << std::ios::hex << excRec->ExceptionAddress;
         terminate();
     }
 }
 
 void mainCaught()
 {
-    Logger::Log("Vsounds - CG364 (Compiled on " + std::string(__DATE__) + " at " + std::string(__TIME__) + ")");
+    Logger::Log("Vsounds - CG364 (Compiled on " + std::string(__DATE__) + " at " + std::string(__TIME__) + ")", __FUNCTION__);
 
     AudioEngine* AE = new AudioEngine(""); 
 
     std::vector<SoundConfigItem> confList = Configuration::GetSoundConfigurationVector(); //read the sound configuration;
+
     confList = Configuration::GetSoundConfigurationVector();
     InputManager man = {}; //create a inputmanager instance
     man.AssignInputs(confList);//and assign the inputs

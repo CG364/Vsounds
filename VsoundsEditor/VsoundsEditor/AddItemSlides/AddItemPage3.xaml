@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="VsoundsEditor.AddItemSlides.AddItemPage3"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VsoundsEditor.AddItemSlides"
+      mc:Ignorable="d" 
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="212" d:DesignWidth="494">
+
+    <Grid>
+        <Label Content="When do you want to hear it?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="30"/>
+        <Label Content="Choose your prefered key" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#DD9C9C9C"/>
+        <Button x:Name="next_step" Margin="0,0,10,10" Foreground="#DD00990E" Height="32" VerticalAlignment="Bottom" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" HorizontalAlignment="Right" Width="49">
+            <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+        </Button>
+        <TextBox x:Name="KeyTb" Height="23" Margin="20,94,64,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Click the keyboard icon to listen for a keystroke" IsReadOnly="True" LostKeyboardFocus="KeyTb_LostKeyboardFocus"/>
+        <Button x:Name="keyListen" Margin="0,89,10,0" VerticalAlignment="Top" Foreground="#E5323232" HorizontalAlignment="Right" Width="49" GotKeyboardFocus="keyListen_GotKeyboardFocus" KeyDown="keyListen_KeyDown" KeyUp="keyListen_KeyUp" Click="keyListen_Click" LostKeyboardFocus="keyListen_LostKeyboardFocus">
+            <materialDesign:PackIcon Name="buttonIcon" Kind="Keyboard"/>
+        </Button>
+        <TextBlock x:Name="keyValidator" HorizontalAlignment="Left" Margin="20,122,0,0" TextWrapping="Wrap" Text="[isValid]" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

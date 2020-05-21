@@ -3,8 +3,10 @@
 //the audiere library is temporarily used, but this will later be done with the Windows Media Foundation(i just want it to work first).
 AudioEngine::AudioEngine(std::string sDeviceName = "")
 {
+	Logger::Log("", __FUNCTION__);
 	if (sDeviceName == "")
 	{
+		
 		currentDevice = audiere::OpenDevice(0, 0);
 		
 	}
@@ -48,7 +50,7 @@ void AudioEngine::EnumerateDevices()//reserved for later use
 //this thread removes items that are finished playing from the live file list
 void AudioEngine::GarbageCollectorWork()
 {
-	Logger::Log("Starting garbage collector thread");
+	Logger::Log("Starting garbage collector thread", __FUNCTION__);
 	while (CollectGarbage)
 	{
 		int RemovedItems = 0;
@@ -64,7 +66,7 @@ void AudioEngine::GarbageCollectorWork()
 		}
 		if (RemovedItems > 0)
 		{
-			Logger::Log("Gargbage collector - " + std::to_string(RemovedItems) + " items freed.");
+			Logger::Log("Gargbage collector - " + std::to_string(RemovedItems) + " items freed.", __FUNCTION__);
 		}
 		Sleep(5000);
 	}

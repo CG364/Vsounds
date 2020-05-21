@@ -18,7 +18,7 @@ void KeyboardInputProvider::Bind(std::vector<SoundConfigItem> itemList) //start 
 
 void KeyboardInputProvider::Unbind()
 {
-	Logger::Log("Cleaning up the windows message loop...");
+	Logger::Log("Cleaning up the windows message loop...", __FUNCTION__);
 }
 
 KeyboardInputProvider::~KeyboardInputProvider()
@@ -33,7 +33,7 @@ void KeyboardInputProvider::messageThread_w()
 	for (size_t i = 0; i < itemList.size(); i++)
 	{
 		bool res = RegisterHotKey(0, i, itemList[i].inputActivationMod, itemList[i].inputActivation);
-		if (!res) { Logger::Log("Unable to register " + itemList[i].Path + ": " + std::to_string(GetLastError())); }
+		if (!res) { Logger::Log("Unable to register " + itemList[i].Path + ": " + std::to_string(GetLastError()), __FUNCTION__); }
 		registeredItems.push_back(itemList[i]);
 	}
 	bool res = RegisterHotKey(0, itemList.size(), 0x0001 | 0x4000, 0x1B); //escape key
@@ -56,7 +56,7 @@ void KeyboardInputProvider::messageThread_w()
 			int key = (incoming.lParam & 0x01FF0000) >> 16; //stole this code from my older c# app, will replace this with wParam and then find the ID instead of the key
 			if (key == 27) //escape key
 			{
-				Logger::Log("ESC pressed, stopping all sounds.");
+				Logger::Log("ESC pressed, stopping all sounds.", __FUNCTION__);
 				for (size_t i = 0; i < AudioEngine::engineList.size(); i++)
 				{
 					AudioEngine::engineList[i]->stopAll();
@@ -66,7 +66,7 @@ void KeyboardInputProvider::messageThread_w()
 			{
 				if (key == registeredItems[i].inputActivation)
 				{
-					Logger::Log("Found key: " + registeredItems[i].Path);
+					Logger::Log("Found key: " + registeredItems[i].Path, __FUNCTION__);
 					AudioEngine::engineList[0]->playSound(registeredItems[i].Path);
 				}
 			}

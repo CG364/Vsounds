@@ -2,7 +2,7 @@
 
 InputManager::InputManager()
 {
-	Logger::Log("Starting input manager");
+	Logger::Log("Starting input manager", __FUNCTION__);
 }
 
 void InputManager::AssignInputs(std::vector<SoundConfigItem> ListToLoad)

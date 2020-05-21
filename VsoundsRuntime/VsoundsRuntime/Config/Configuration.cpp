@@ -11,7 +11,7 @@ std::vector<SoundConfigItem> Configuration::GetSoundConfigurationVector(bool ref
 	else
 	{
 		std::string confFilePath = std::string(std::getenv("APPDATA")) + "\\Vsounds\\config.json";
-		Logger::Log("Importing sound configuration from: " + confFilePath);
+		Logger::Log("Importing sound configuration from: " + confFilePath, __FUNCTION__);
 		std::ifstream fileStream = std::ifstream(confFilePath, std::ios::binary);
 
 		auto deserializedJson = nlohmann::json::parse(fileStream);
@@ -28,7 +28,7 @@ std::vector<SoundConfigItem> Configuration::GetSoundConfigurationVector(bool ref
 			curr_item.Path = (std::string)deserializedJson[i]["DefaultPath"].get<std::string>();
 			confList.push_back(curr_item);
 		}
-		Logger::Log("Configuration imported. " + std::to_string(confList.size()) + " Elements found.");
+		Logger::Log("Configuration imported. " + std::to_string(confList.size()) + " Elements found.", __FUNCTION__);
 		cache = confList;
 		cacheIsFilled = true;
 		return confList;

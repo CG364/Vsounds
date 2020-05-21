@@ -1,0 +1,40 @@
+﻿<Window x:Class="VsoundsEditor.AddItemSlides.AddItemMainWindow"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:VsoundsEditor.AddItemSlides"
+		Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+		mc:Ignorable="d"
+		Title="Add item" Height="212" Width="494" WindowStartupLocation="CenterOwner" WindowStyle="None" MaxHeight="212" MaxWidth="494" MinWidth="494" MinHeight="212">
+    <Grid>
+        <materialDesign:Transitioner SelectedIndex="0">
+            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
+                <AdornerDecorator>
+                    <Grid>
+                        <local:AddItemPage1 x:Name="namePage"></local:AddItemPage1>
+                    </Grid>
+                </AdornerDecorator>
+            </materialDesign:TransitioningContent>
+
+            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
+                <AdornerDecorator>
+                    <Grid>
+                        <local:AddItemPage2 x:Name="pathPage"></local:AddItemPage2>
+                    </Grid>
+                </AdornerDecorator>
+            </materialDesign:TransitioningContent>
+            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
+                <AdornerDecorator>
+                    <Grid>
+                        <local:AddItemPage3 x:Name="keyPage"></local:AddItemPage3>
+                    </Grid>
+                </AdornerDecorator>
+            </materialDesign:TransitioningContent>
+            
+        </materialDesign:Transitioner>
+    </Grid>
+</Window>
