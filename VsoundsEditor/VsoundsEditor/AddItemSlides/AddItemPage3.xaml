@@ -14,8 +14,8 @@
     <Grid>
         <Label Content="When do you want to hear it?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="30"/>
         <Label Content="Choose your prefered key" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#DD9C9C9C"/>
-        <Button x:Name="next_step" Margin="0,0,10,10" Foreground="#DD00990E" Height="32" VerticalAlignment="Bottom" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" HorizontalAlignment="Right" Width="49">
-            <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+        <Button x:Name="next_step" Margin="0,0,10,10" Foreground="#DD00990E" Height="32" VerticalAlignment="Bottom" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" HorizontalAlignment="Right" Width="49" Click="next_step_Click" IsEnabled="False">
+            <materialDesign:PackIcon Kind="check"></materialDesign:PackIcon>
         </Button>
         <TextBox x:Name="KeyTb" Height="23" Margin="20,94,64,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Click the keyboard icon to listen for a keystroke" IsReadOnly="True" LostKeyboardFocus="KeyTb_LostKeyboardFocus"/>
         <Button x:Name="keyListen" Margin="0,89,10,0" VerticalAlignment="Top" Foreground="#E5323232" HorizontalAlignment="Right" Width="49" GotKeyboardFocus="keyListen_GotKeyboardFocus" KeyDown="keyListen_KeyDown" KeyUp="keyListen_KeyUp" Click="keyListen_Click" LostKeyboardFocus="keyListen_LostKeyboardFocus">

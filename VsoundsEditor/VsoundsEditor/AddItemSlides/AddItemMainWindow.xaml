@@ -11,7 +11,7 @@
 		mc:Ignorable="d"
 		Title="Add item" Height="212" Width="494" WindowStartupLocation="CenterOwner" WindowStyle="None" MaxHeight="212" MaxWidth="494" MinWidth="494" MinHeight="212">
     <Grid>
-        <materialDesign:Transitioner SelectedIndex="0">
+        <materialDesign:Transitioner Name="DialogContentTransitioner" SelectedIndex="0">
             <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
                 <AdornerDecorator>
                     <Grid>

@@ -23,6 +23,8 @@ namespace VsoundsEditor.AddItemSlides
     {
         List<SoundItem> currentRegs;
         public event EventHandler<int[]> KeyChanged;//first item = vk, second item = modifierKeys
+        public event EventHandler Accepted;
+        
         List<Key> CurrentlyHeldModKeys = new List<Key>();
         bool gotKey = false;
         bool buttonListenState = false;
@@ -30,10 +32,11 @@ namespace VsoundsEditor.AddItemSlides
         int acceptedModKey = -1;
         List<Key> acceptedModKeyArray;
         int acceptedvk = -1;
-
+        Button btn;
         public AddItemPage3()
         {
             InitializeComponent();
+            btn = next_step;
             currentRegs = ConfigurationManager.GetSoundConfig();
         }
 
@@ -155,6 +158,15 @@ namespace VsoundsEditor.AddItemSlides
             }
             output = output | 0x4000; //mod_norepeat keycode
             return output;
+        }
+
+        private void next_step_Click(object sender, RoutedEventArgs e)
+        {
+            if (Accepted != null)
+            {
+                Accepted.Invoke(this, null);
+            }
+                
         }
     }
 }

@@ -69,5 +69,7 @@ int Configuration::getApplicationConfigRulesI(std::string rule)
 	return 0;
 }
 
+
+
 bool Configuration::cacheIsFilled;
 std::vector<SoundConfigItem> Configuration::cache;

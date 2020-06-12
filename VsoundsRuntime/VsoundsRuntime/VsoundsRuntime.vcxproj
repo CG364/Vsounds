@@ -96,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)VsoundsRuntime\Dependencies\audiere-1.9.4-win32\lib\audiere.lib;IPHlpApi.Lib;User32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)VsoundsRuntime\Dependencies\audiere-1.9.4-win32\lib\audiere.lib;IPHlpApi.Lib;User32.lib;Shell32.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -169,6 +169,7 @@
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\Providers\KeyboardInputProvider.cpp" />
     <ClCompile Include="Log\Logger.cpp" />
+    <ClCompile Include="NotificationTray\NotificationTray.cpp" />
     <ClCompile Include="VsoundsRuntime.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,15 @@
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Input\Providers\KeyboardInputProvider.h" />
     <ClInclude Include="Log\Logger.h" />
+    <ClInclude Include="NotificationTray\NotificationTray.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VsoundsRuntime.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\resources\icon\VsoundsLogo.ico" />
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

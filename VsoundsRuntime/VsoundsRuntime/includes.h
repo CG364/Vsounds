@@ -8,7 +8,11 @@
 #include <cstring>
 #include <vector>
 #include <thread>
+#include <chrono>
 #include "windows.h"
+#include "shellapi.h"
+
+#include "resource.h"
 
 
 //File types

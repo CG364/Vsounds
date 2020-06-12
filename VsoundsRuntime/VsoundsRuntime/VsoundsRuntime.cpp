@@ -4,6 +4,7 @@
 #include "./AudioEngine/AudioEngine.h"
 #include "./Config/Configuration.h"
 #include "./Input/InputManager.h"
+#include "./NotificationTray/NotificationTray.h"
 //This program requires:
 //nlohmann:json https://github.com/nlohmann/json
 //Audiere(tmp): http://audiere.sourceforge.net/
@@ -14,12 +15,15 @@ static int filterException(int code, LPEXCEPTION_POINTERS ex) {
     return EXCEPTION_EXECUTE_HANDLER;
 }
 
+bool doContinueApplication = true;
 void mainCaught();
 
-void echoException()
+void quitApplication()
 {
-    Logger::Log("Uncaught fatal exception:\n", __FUNCTION__, 3);
+    Logger::Log("Quitting Vsounds...", __FUNCTION__, 2);
+    doContinueApplication = false;
 }
+
 
 int main()
 {
@@ -33,7 +37,7 @@ int main()
     __except (filterException(GetExceptionCode(), GetExceptionInformation()))
     {
         PEXCEPTION_RECORD excRec = exceptionInfo->ExceptionRecord;
-        echoException();
+        std::cout << "\n\nFATAL EXCEPTION:\n";
         std::cout << "\nException code: " << excRec->ExceptionCode << " at " << std::ios::hex << excRec->ExceptionAddress;
         terminate();
     }
@@ -50,9 +54,6 @@ void mainCaught()
     confList = Configuration::GetSoundConfigurationVector();
     InputManager man = {}; //create a inputmanager instance
     man.AssignInputs(confList);//and assign the inputs
-
-    while (true)
-    {
-        Sleep(5000); //this thread will become the notification tray icon / will communicate with windows.
-    }
+    NotificationTray* trayIcon = new NotificationTray();
+    trayIcon->Start();
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,13 @@ namespace VsoundsEditor.AddItemSlides
             namePage.SoundNameChanged += NamePage_SoundNameChanged;
             pathPage.SoundFilePathChanged += PathPage_SoundFilePathChanged;
             keyPage.KeyChanged += KeyPage_KeyChanged;
+            keyPage.Accepted += KeyPage_Accepted;
             newItem.inputType = 1; //always keyboard
+        }
+
+        private void KeyPage_Accepted(object sender, EventArgs e)
+        {
+            Debugger.Break();
         }
 
         private void KeyPage_KeyChanged(object sender, int[] e)
@@ -44,5 +51,6 @@ namespace VsoundsEditor.AddItemSlides
         {
             newItem.Name = e;
         }
+
     }
 }

@@ -18,6 +18,11 @@ namespace VsoundsEditor
             }
             return cache;
         }
+        public static void DropCache()
+        {
+            cache = null;
+            isCached = false;
+        }
         static bool isCached = false;
         static List<SoundItem> cache;
     }

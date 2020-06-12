@@ -8,6 +8,7 @@ private:
 	static int GetConsoleColor(int logType);
 	static void ChangeConsoleColor(int color);
 	static volatile bool IsLogging;
+	static int threadLockedID;
 
 };
 
